@@ -19,7 +19,13 @@ class FlashcardContextProvider extends Component {
     }
 
     //create
-    createFlash() {
+    createFlash(e,cont) {
+        e.preventDefault();
+        let data = [...this.state.content];
+        data.push(cont);
+        this.setState({
+            content: data
+        })
 
     }
 
