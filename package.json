@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "autoresponsive-react": "^1.1.31",
+        "axios": "^0.19.2",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
         "react-card-flip": "^1.0.10",

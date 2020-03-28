@@ -1,6 +1,5 @@
 import React, {Fragment, useContext, useState} from 'react';
 import {FlashcardContext} from "../contexts/FlashcardContext";
-import Navbar from "./Navbar";
 import FlipCard from "./FlipCard";
 
 
@@ -10,13 +9,27 @@ const Home = () => {
     const [engWord, setEngWord] = useState('');
     const [conWord, setConWord] = useState('');
     const [langSelect, setLangSelect] = useState('spanish');
+    const [indexSelected, setIndexSelected] = useState(0);
+    const [showLang,setShowLang] = useState('spanish')
+
+    let current = indexSelected;
+    const getClass = (classes, index) => {
+        if(index === current){
+            return classes + ' active';
+
+        }
+        return classes;
+    }
+
+    const handleClick = (e,index) => {
+        setIndexSelected(index)
+        setShowLang(e.target.value)
+    }
+
 
     return (
         <div className="container">
-            <Navbar />
-
             <br/>
-
             <div>
                 <form
                     onSubmit={(e)=>{
@@ -27,6 +40,7 @@ const Home = () => {
                         e.target.reset();
                         setEngWord('');
                         setConWord('');
+                        setLangSelect('spanish');
                     }}>
                     <div className="row" style={{marginBottom:"10px"}}>
                         <div className="col">
@@ -54,16 +68,23 @@ const Home = () => {
 
                 <br/>
 
+                <div className="buttons d-flex justify-content-between">
+                        <button onClick={(e) => handleClick(e,0)} className={getClass("btn btn-outline-secondary btn-lg", 0)} value="spanish">Spanish</button>
+                        <button onClick={(e) => handleClick(e,1)} className={getClass("btn btn-outline-success btn-lg", 1)} value="tagalog">Tagalog</button>
+                        <button onClick={(e) => handleClick(e,2)} className={getClass("btn btn-outline-danger btn-lg", 2)} value="french">French</button>
+                        <button onClick={(e) => handleClick(e,3)} className={getClass("btn btn-outline-warning btn-lg", 3)} value="german">German</button>
+                        <button onClick={(e) => handleClick(e,4)} className={getClass("btn btn-outline-dark btn-lg", 4)} value="japanese">Japanese</button>
+                </div>
 
+                <br/>
 
-                {context.content.map((el, index) => (
-                    <FlipCard key={el.id + index} english={el.english} converted={el.converted} />
-                ))}
+                {context.content.map((el, index) => {
+                    if (el.language === showLang) {
+                        return <FlipCard key={el.id + index} english={el.english} converted={el.converted}/>
+                    }
+                })}
             </div>
-
         </div>
-
-
     );
 };
 
