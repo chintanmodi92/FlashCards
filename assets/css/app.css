@@ -1,7 +1,8 @@
 body {
-    background-color: lightgray;
+    background-color: black;
 }
 
-/*.home {*/
-/*    background-image: linear-gradient(to bottom right, purple, blue);*/
-/*}*/
+.flipCard {
+    color: white;
+    background-image: linear-gradient(to bottom right, purple, blue);
+}

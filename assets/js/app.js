@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import FlashcardContextProvider from "./contexts/FlashcardContext";
 import Home from "./components/Home";
-import '../css/app.css'
 import Navbar from "./components/Navbar";
 
 

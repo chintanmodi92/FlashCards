@@ -1,4 +1,6 @@
 import React, {Component, createContext} from 'react';
+import axios from "axios";
+
 
 export const FlashcardContext = createContext();
 
@@ -6,16 +8,9 @@ class FlashcardContextProvider extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: [
-                {id:1, english: 'hello', converted: 'Hola', language: 'spanish'},
-                {id:2, english: 'how are you doing? ', converted: 'Como Estas!', language: 'spanish'},
-                {id:3, english: 'How are you?', converted: 'Kamusta ka?', language: 'tagalog'},
-                {id:4, english: 'hello', converted: 'Hola', language: 'spanish'},
-                {id:5, english: 'hello', converted: 'Hola', language: 'spanish'},
-                {id:6, english: 'hello', converted: 'Hola', language: 'spanish'}
-
-            ]
-        }
+            content: []
+        };
+        this.readFlash();
     }
 
     //create
@@ -31,8 +26,17 @@ class FlashcardContextProvider extends Component {
 
     //Read
     readFlash() {
+        axios.get('/api/flashcard/read')
+            .then(response => {
+                console.log(response);
+                this.setState({
+                    content: response.data
+                })
+
+            }).catch(err => console.log(err))
 
     }
+
 
     //Update
     updateFlash() {
@@ -50,7 +54,6 @@ class FlashcardContextProvider extends Component {
             <FlashcardContext.Provider value={{
                 ...this.state,
                 createFlash: this.createFlash.bind(this),
-                readFlash: this.readFlash.bind(this),
                 updateFlash: this.updateFlash.bind(this),
                 deleteFlash: this.deleteFlash.bind(this)
             }}>
