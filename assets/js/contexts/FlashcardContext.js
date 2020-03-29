@@ -16,11 +16,15 @@ class FlashcardContextProvider extends Component {
     //create
     createFlash(e,cont) {
         e.preventDefault();
-        let data = [...this.state.content];
-        data.push(cont);
-        this.setState({
-            content: data
-        })
+        axios.post('/api/flashcard/create', cont)
+            .then(response => {
+                let data = [...this.state.content];
+                data.push(response.data);
+                this.setState({
+                    content: data
+                })
+                this.readFlash();
+            }).catch(err=>console.log(err));
 
     }
 
