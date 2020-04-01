@@ -17,8 +17,11 @@
     "dependencies": {
         "autoresponsive-react": "^1.1.31",
         "axios": "^0.19.2",
+        "bootstrap": "^4.4.1",
+        "bootstrap-icons": "^1.0.0-alpha3",
         "prop-types": "^15.7.2",
         "react": "^16.13.1",
+        "react-bootstrap": "^1.0.0",
         "react-card-flip": "^1.0.10",
         "react-dom": "^16.13.1",
         "react-router-dom": "^5.1.2"

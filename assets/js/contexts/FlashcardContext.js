@@ -22,8 +22,8 @@ class FlashcardContextProvider extends Component {
                 data.push(response.data);
                 this.setState({
                     content: data
-                })
-                this.readFlash();
+                });
+              this.readFlash();
             }).catch(err=>console.log(err));
 
     }
@@ -43,13 +43,42 @@ class FlashcardContextProvider extends Component {
 
 
     //Update
-    updateFlash() {
+    updateFlash(data) {
+        axios.put('/api/flashcard/update/' + data.id, data)
+            .then(
+                response => {
+                    let content = [...this.state.content];
+                    let findContent = content.find(con => con.id === data.id);
 
+                    findContent.english = data.eng;
+                    findContent.converted = data.con;
+
+                    this.setState =({
+                        content: content
+                    })
+                }
+            ).catch(
+                err=>console.log(err)
+        );
+
+        this.readFlash();
     }
 
-
     //Delete
-    deleteFlash() {
+    deleteFlash(data) {
+        axios.delete('/api/flashcard/delete/' + data)
+            .then(
+                response=>{
+                    let content = [...this.state.content];
+                    let findContent = content.find(con => con.id === data);
+                    content.splice(content.indexOf(findContent),1);
+                    this.setState({
+                        content: content
+                    })
+                }
+            ).catch(
+                err=>console.log(err)
+        )
 
     }
 
