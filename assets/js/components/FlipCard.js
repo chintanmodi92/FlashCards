@@ -13,8 +13,8 @@ function FlipCard(props) {
 
     const [isOpen,setIsOpen] = useState(false);
     const cardStyleFront = {
-        color: "white",
-        background: "purple"
+        color: "black",
+        background: "lavender"
     };
     const cardStyleBack = {
         color: "white",

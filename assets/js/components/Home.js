@@ -83,15 +83,17 @@ const Home = () => {
                 <br/>
 
                 {context.content.map((el, index) => {
+                    let engWord2 = engWord.toLowerCase();
+                    let conWord2 = conWord.toLowerCase();
 
                     if (el.language === showLang) {
 
                         if(engWord === '' && conWord === ''){
                             return <FlipCard key={el.id + index} english={el.english} converted={el.converted} id={el.id} />
-                        } else if( engWord !== '' && (el.english.toLowerCase().includes(engWord))) {
-                         //   console.log(el.english);
+                        } else if( engWord !== '' && (el.english.toLowerCase().includes(engWord2))) {
+                            console.log(el.english);
                             return <FlipCard key={el.id + index} english={el.english} converted={el.converted} id={el.id} />
-                        } else if(conWord !== '' && (el.converted.toLowerCase().includes(conWord))) {
+                        } else if(conWord !== '' && (el.converted.toLowerCase().includes(conWord2))) {
                           //  console.log(el.converted);
                             return <FlipCard key={el.id + index} english={el.english} converted={el.converted} id={el.id} />
                         }
